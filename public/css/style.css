@@ -1,0 +1,15 @@
+.container {
+	/*max-width: 500px;*/
+}
+.sign-up form .form-group label {
+	font-weight: bold;
+}
+.sign-up form .form-group input[type=number] {
+	appearance:none;
+	-moz-appearance:none; 
+	-o-appearance:none; 
+	-webkit-appearance:none;
+}
+.sign-up form .form-group:last-child {
+	text-align: center;
+}
