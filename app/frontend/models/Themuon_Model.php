@@ -18,6 +18,15 @@ class Themuon_Model extends Base_Model
             $sth->execute($post);
     }
 
+    public function getAllbooks(){
+         $query = "SELECT st.*, GROUP_CONCAT(tm.sophieu,':', tm.ngaymuon, ':', tm.hantra, ':', tm.sohieusach) as themuon
+FROM students st INNER JOIN themuon tm ON tm.id_student = st.id GROUP BY st.id";
+        $sth = $this->db->prepare($query);
+        $sth->execute();
+        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $sth->closeCursor();
+        return $data;
+    }
 
 
     //  public function find_all_join() {

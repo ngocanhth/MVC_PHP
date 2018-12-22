@@ -171,12 +171,12 @@ class Students_Controller extends Base_Controller {
     public function showAllinfor() {
        $id = getParameter('id', 0);
  // var_dump(  $id);
-        $students = $this->model->student->find_all();
+     //   $students = $this->model->student->find_all();
 
-        $themuons = $this->model->themuon->find_all();
+        $themuons = $this->model->themuon->getAllbooks();
 
         // echo "<pre>";
-        // var_dump($students);
+        
         // var_dump($themuons);
         // echo "</pre>";
         // die();
@@ -193,7 +193,6 @@ class Students_Controller extends Base_Controller {
        //  die();
 
           $this->view->load('themuon/listBooks', [
-            'students' => $students,
             'themuons' => $themuons
         ]);
     
