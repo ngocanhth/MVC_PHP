@@ -4,26 +4,26 @@
 
 class Students_Controller extends Base_Controller {
 
-    private $__name;
-    private $__yearsbirth;
-    private $__age;
-    private $__class;
+    // private $__name;
+    // private $__yearsbirth;
+    // private $__age;
+    // private $__class;
 
-     public function setName($name) {
-      $this->__name = $name;
-     }
-     public function getName() {
-        return $this->__name;
-     }
-      public function getyearsbirth() {
-        return $this->__yearsbirth;
-     }
-      public function getage() {
-        return $this->__age;
-     }
-      public function getClass() {
-        return $this->__class;
-     }
+    //  public function setName($name) {
+    //   $this->__name = $name;
+    //  }
+    //  public function getName() {
+    //     return $this->__name;
+    //  }
+    //   public function getyearsbirth() {
+    //     return $this->__yearsbirth;
+    //  }
+    //   public function getage() {
+    //     return $this->__age;
+    //  }
+    //   public function getClass() {
+    //     return $this->__class;
+    //  }
 
     public function index() {
      //  $students = Student_Model::find_all();
@@ -69,6 +69,7 @@ class Students_Controller extends Base_Controller {
 
      public function showDetail() {
         $id = getParameter('id', 0);
+
         $student = $this->model->student->find_by_id($id);
         $themuons = $this->model->themuon->showinfo($id);
         // echo "<pre>";
@@ -92,7 +93,7 @@ class Students_Controller extends Base_Controller {
 //   var_dump($data);
 //   echo "</pre>";
 // die();
-        $this->view->load('student/show', [
+       $this->view->load('student/showdetail', [
            "student"  => $student,
            "themuons"  => $themuons
         ]);
@@ -128,4 +129,98 @@ class Students_Controller extends Base_Controller {
       $this->model->student->deleteData($id);
       redirect('http://127.0.0.1/BorrowBooks');
     }
+
+    public function loadThemuon() {
+        $id_student = getParameter('id', 0);
+        //var_dump( $id_student); die();
+       $data=[
+            'tittle'=>'Đăng ký mượn sách',
+            'id_student'=> $id_student
+        ];
+
+//var_dump($data); die();
+       return  $this->view->load('themuon/addThemuon', $data);
+    }
+
+     public function addThemuon() { 
+    if(isset($_POST['addnewThemuon'])){
+        $id_student = $_POST['id_student'];
+        $sophieu = $_POST['sophieu'];
+        $ngaymuon = $_POST['ngaymuon'];
+        $hantra = $_POST['hantra'];
+        $sohieusach = $_POST['sohieu'];
+      
+       $post=array(
+          'id_student'     => $id_student,
+          'sophieu'        => $sophieu,
+          'ngaymuon'       => $ngaymuon,
+          'hantra'         => $hantra,
+          'sohieusach'     => $sohieusach
+       );    
+ //var_dump($post);die();
+
+  }
+        $this->model->themuon->addThemuon($post);
+        
+   $url_id =  BASE_URL . "?module=Students&action=showDetail&id=".$id_student;
+   //var_dump($url_id); die();
+     header("Location:  $url_id");
+        // return  $this->showDetail();
+    }
+
+    public function showAllinfor() {
+       $id = getParameter('id', 0);
+  //var_dump(  $id);
+        $students = $this->model->student->find_all();
+        
+        $themuons = $this->model->themuon->showinfo($id);
+
+        // echo "<pre>";
+        // var_dump($students);
+        // var_dump($themuons);
+        // echo "</pre>";
+        // die();
+
+        // $this->view->load('themuon/listBooks', [
+        //     'students' => $students,
+        //     'themuons' => $themuons
+        // ]);
+//         $data= array(
+//           $students=> $themuons
+//         );
+// var_dump($data);
+      
+       //  die();
+
+          $this->view->load('themuon/listBooks', [
+            'students' => $students,
+            'themuons' => $themuons
+        ]);
+    
+       
+  }
+
+    public function showAllthemuon() { 
+    if(isset($_POST['addnewThemuon'])){
+        $id_student = $_POST['id_student'];
+        $sophieu = $_POST['sophieu'];
+        $ngaymuon = $_POST['ngaymuon'];
+        $hantra = $_POST['hantra'];
+        $sohieusach = $_POST['sohieu'];
+      
+       $post=array(
+          'id_student'     => $id_student,
+          'sophieu'        => $sophieu,
+          'ngaymuon'       => $ngaymuon,
+          'hantra'         => $hantra,
+          'sohieusach'     => $sohieusach
+       );    
+ //var_dump($post);die();
+
+  }
+        $this->model->themuon->addThemuon($post);
+        
+        return  $this->showAllinfor();
+    }
+
 }

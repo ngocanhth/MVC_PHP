@@ -51,6 +51,10 @@ class Base_Model extends Core_Model {
         return $data;
     }
 
+    public function getLastId() {
+        return $this->db->lastInsertId();
+    } 
+
 public function find_by_id($id) {
         $query = "select * from {$this->table} where id = :id";
         $sth = $this->db->prepare($query);

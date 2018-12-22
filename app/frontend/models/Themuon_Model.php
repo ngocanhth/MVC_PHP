@@ -41,4 +41,15 @@ class Themuon_Model extends Base_Model
         return $data;
     }
 
+    //    public function find_all_id($id) {
+    //     $query = "select * from {$this->table} where id_student = :id";
+    //     $sth = $this->db->prepare($query);
+    //     $sth->execute([
+    //         ':id' => $id
+    //     ]);
+    //     $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+    //     $sth->closeCursor();
+    //     return $data;
+    // }
+
 }
