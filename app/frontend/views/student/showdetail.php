@@ -27,7 +27,7 @@
   	            <td><?php echo $themuon['ngaymuon'] ?></td>
                 <td><?php echo $themuon['hantra'] ?></td>
   	            <td>
-                  <a href="?module=Students&action=deleBook&id=<?php echo $student['id'] ?>">
+                  <a href="?module=Students&action=deleBook&id=<?php echo $themuon['id'] ?>&id_student=<?php echo $student['id'] ?>">
                     Trả sách
                   </a>
                 </td>

@@ -170,10 +170,10 @@ class Students_Controller extends Base_Controller {
 
     public function showAllinfor() {
        $id = getParameter('id', 0);
-  //var_dump(  $id);
+ // var_dump(  $id);
         $students = $this->model->student->find_all();
-        
-        $themuons = $this->model->themuon->showinfo($id);
+
+        $themuons = $this->model->themuon->find_all();
 
         // echo "<pre>";
         // var_dump($students);
@@ -223,4 +223,17 @@ class Students_Controller extends Base_Controller {
         return  $this->showAllinfor();
     }
 
+        public function deleBook() {
+       $id = getParameter('id', 0);
+       $id_student = getParameter('id_student', 0);
+     //  var_dump($id_student);die();
+      $this->model->themuon->deleteBooks('themuon', $id );
+    
+
+        $url_id =  BASE_URL . "?module=Students&action=showDetail&id=".$id_student;
+   // //var_dump($url_id); die();
+      header("Location:  $url_id");
+
+
+    }
 }

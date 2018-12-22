@@ -36,10 +36,27 @@ class Base_Model extends Core_Model {
 
       public function deleteData($id_Data) {
         $query ="DELETE FROM students WHERE id=:id_Data";
+
+       // var_dump( $query);die();
+
         $sth = $this->db->prepare($query);
         $sth->execute([':id_Data' => $id_Data]);
         return $sth->rowCount();
     }
+
+
+  public function deleteBooks($table, $id_Data) {
+        $query ="DELETE FROM $table WHERE id=:id_Data";
+
+      //  var_dump( $query);die();
+
+        $sth = $this->db->prepare($query);
+        $sth->execute([':id_Data' => $id_Data]);
+        return $sth->rowCount();
+    }
+
+
+
 
 
   public function find_all() {

@@ -51,5 +51,11 @@ class Themuon_Model extends Base_Model
     //     $sth->closeCursor();
     //     return $data;
     // }
+    //  public function deleBook($id_Data) {
+    //     $query ="DELETE FROM students WHERE id=:id_Data";
+    //     $sth = $this->db->prepare($query);
+    //     $sth->execute([':id_Data' => $id_Data]);
+    //     return $sth->rowCount();
+    // }
 
 }
