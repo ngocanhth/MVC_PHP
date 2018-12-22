@@ -70,8 +70,31 @@ class Students_Controller extends Base_Controller {
      public function showDetail() {
         $id = getParameter('id', 0);
         $student = $this->model->student->find_by_id($id);
+        $themuons = $this->model->themuon->showinfo($id);
+        // echo "<pre>";
+        // var_dump( $student);
+        // var_dump( $themuon);
+        // echo "</pre>";
+        // die();
+        
+        // $data= array(
+        //  "student"  => [$student],
+        //  "themuon" =>[$themuon]
+        // );
+          
+        //   $data= array(
+        //  "student"  => $student,
+        //  "themuon" =>$themuons
+        // );
+
+
+// echo "<pre>";
+//   var_dump($data);
+//   echo "</pre>";
+// die();
         $this->view->load('student/show', [
-            'student' => $student
+           "student"  => $student,
+           "themuons"  => $themuons
         ]);
     }
     public function editStudent(){

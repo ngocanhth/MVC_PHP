@@ -31,12 +31,12 @@ class Themuon_Model extends Base_Model
 
 
     public function showinfo($id) {
-        $query = "select * from {$this->table} where id = :id";
+        $query = "select * from {$this->table} where id_student = :id";
         $sth = $this->db->prepare($query);
         $sth->execute([
             ':id' => $id
         ]);
-        $data = $sth->fetch(PDO::FETCH_ASSOC);
+        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
         $sth->closeCursor();
         return $data;
     }
